@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Ecommerce.Model.Product>
+@{
+    ViewData["Title"] = "Ürünler";
+}
+
+<h1>Ürünler</h1>
+<a asp-action="Create" asp-controller="Products">Yeni Ürün</a>
+<table class="table table-striped table-hover table-bordered">
+    <tr>
+        <th>Ad</th>
+        <th>Fiyat</th>
+        <th>Eylemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">@item.Name</a></td>
+            <td>@item.Price</td>
+            <td><a asp-controller="Products" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');">Sil</a></td>
+        </tr>
+    }
+</table>
